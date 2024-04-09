@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HomePage | Articles Hub{% endblock %}
+
+{% block body %}
+<style>
+  
+</style>
+
+<div class="container mt-5 p-5">
+<!-- Logo and Title -->
+<div class="row">
+    <div class="col-12 text-center">
+        <img src="{{ asset('images/logo.png') }}" style="height:5rem;">
+        
+        <h2 class="pt-2">Articles Hub</h2>
+    </div>
+</div>
+
+<!-- Line space -->
+<br>
+<!-- Search Bar -->
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+
+
+        <form
+        class="search input-group pt-4"
+        {{ stimulus_controller('search-preview', {
+            url: path('app_article')
+        }) }}
+        action="{{ path('app_article') }}">
+        
+        <button class="input-group-text" type="submit">
+        <i class="fas fa-search content-search-icon"></i>
+        </button>
+            <input
+                autocomplete="off"
+                type="search"
+                name="article"
+                class="form-control input-group-prepend"
+                placeholder="Rechercher..."
+                aria-label="Search"
+                value="{{ app.request.query.get('article')}}"
+                data-action="search-preview#onSearchInput"
+            >
+            <div
+            class="search-preview"
+            data-search-preview-target="result"
+            >
+            </div>
+        </form>
+
+    </div>
+</div>
+{# <div {{ stimulus_controller('hello') }}></div> #}
+<!-- Line space -->
+<br>
+
+<!-- Boxes with title and icon -->
+<div class="row d-flex justify-content-center pt-5">
+
+
+
+    <div class="col-md-4 p-3 ">
+    <a href="{{ path('app_article') }}" target="_blank">
+        <div class="card bg-light text-center border-0 shadow py-3">
+            <div class="card-body">
+                <i class="fa-solid fa-wand-magic-sparkles fa-2xl" style="color: #000000;"></i>
+                <h5 class="card-title pt-3">Discover all articles</h5>
+        
+            </div>
+        </div>
+    </a>
+    </div>
+
+</div>
+
+</div>
+{% endblock %}
