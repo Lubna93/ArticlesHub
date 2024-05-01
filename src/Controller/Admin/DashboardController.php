@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 use App\Entity\Article;
 use App\Entity\Tag;
+use App\Entity\User;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -35,8 +36,14 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToUrl('Website', 'fa fa-laptop-code', '/');
-        
-        yield MenuItem::section('Article', 'fas fa-book-open');
+ 
+        yield MenuItem::section('Users', 'fas fa-user');
+        yield MenuItem::subMenu('Users', 'fas fa-ellipsis')->setSubItems([
+            MenuItem::linkToCrud('Create', 'fas fa-plus ', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Display', 'fas fa-eye', User::class)
+        ]);
+
+        yield MenuItem::section('Articles', 'fas fa-book-open');
         yield MenuItem::subMenu('Article', 'fas fa-ellipsis')->setSubItems([
             MenuItem::linkToCrud('Create', 'fas fa-plus ', Article::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Display', 'fas fa-eye', Article::class)
