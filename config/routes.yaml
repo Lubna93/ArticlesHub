@@ -5,4 +5,4 @@ controllers:
     type: attribute
 homepage:
     path: /
-    controller: App\Controller\AccueilController::index
+    controller: App\Controller\HomeController::index

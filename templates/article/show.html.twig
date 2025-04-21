@@ -39,7 +39,7 @@
 		{% if article.Image != null %}
 			<img class="imgR img-fluid" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_grand')}}" alt="imageActualites">
 		{% endif %}
-			<p class="dateV">Publié le :{{article.createdat | date("d/m/Y")}}</p>
+			<p class="dateV">Posted on {{article.createdat | date('F j, Y')}}</p>
 		</div>
 	</section>
 
