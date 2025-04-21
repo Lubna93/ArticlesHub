@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{article.title}} | Corpus Humanum{% endblock %}
+{% block title %}{{article.title}} | Article Hub{% endblock %}
+
+{% set breadcrumb = {
+	"Articles": path('app_article')
+} %}
+{% set breadcrumb = breadcrumb|merge({(article.title|capitalize): null}) %}
 
 {% block body %}
 <style>
@@ -14,11 +19,12 @@
 
 <div class="container mt-5">
 
-
+	{% include '_components/_breadcrumb.html.twig'  %}
+	
 	<section>
 		<div class="text-center">
 			<h1>
-				<strong>{{article.title}}</strong>
+				<strong>{{article.title|capitalize}}</strong>
 			</h1>
 		</div>
 		<hr>

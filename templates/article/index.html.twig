@@ -2,6 +2,10 @@
 
 {% block title %}Articles{% endblock %}
 
+{% set breadcrumb = {
+	"Articles": path('app_article')
+} %}
+
 {% block body %}
 <style>
 
@@ -36,7 +40,9 @@
     
 </style>
 <div class="container pt-4">
-<section>
+	{% include '_components/_breadcrumb.html.twig'  %}
+
+    <section>
         <div class="py-4">
             <div>
                 <a href={{ path('app_article') }}>
@@ -64,38 +70,38 @@
                 </div>
             </div>
 
-</section>
+    </section>
 
-<section>
-    <div class=" row justify-content-center">
-    {% for article in pager %}  
-            <div class="col d-flex justify-content-center ">
-            <a href={{ path('article_show', {'id' : article.id}) }}> 
-                <div class="cart text-start">
-                    <div class="img1">
-                        {% if article.image == true %}
-                            <img class="img2" src="{{ asset(article.ImageUrl)|imagine_filter('squared_thumbnail_small') }}" alt="image">
-                        {% else %}
-                            <img class="img2" src="" alt="">
-                        {% endif %}
-                    </div>
-                    <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.title|length > 30 ? article.title|slice(0, 30) ~ '…' : article.title}}</p>
-                    <div class="px-4">
-                        {% for tag in article.Tag|slice(0, 2) %}
-                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.title }}</p>
-                        {% endfor %}
-                        {% if article.Tag|length > 2 %}
-                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">...</p>
-                        {% endif %}
-                    </div>
-                    
-                </div>  
-            </a> 
-            </div>
-    {% endfor %}
-    <div class="pager d-flex justify-content-center align-items-center pt-4">{{ pagerfanta(pager) }}</div>
-    </div>
-</section>
+    <section>
+        <div class=" row justify-content-center">
+        {% for article in pager %}  
+                <div class="col d-flex justify-content-center ">
+                <a href={{ path('article_show', {'id' : article.id}) }}> 
+                    <div class="cart text-start">
+                        <div class="img1">
+                            {% if article.image == true %}
+                                <img class="img2" src="{{ asset(article.ImageUrl)|imagine_filter('squared_thumbnail_small') }}" alt="image">
+                            {% else %}
+                                <img class="img2" src="" alt="">
+                            {% endif %}
+                        </div>
+                        <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.title|length > 30 ? article.title|slice(0, 30) ~ '…' : article.title}}</p>
+                        <div class="px-4">
+                            {% for tag in article.Tag|slice(0, 2) %}
+                                <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.title }}</p>
+                            {% endfor %}
+                            {% if article.Tag|length > 2 %}
+                                <p class="btn btn-outline-dark btn-sm py-0 mb-1">...</p>
+                            {% endif %}
+                        </div>
+                        
+                    </div>  
+                </a> 
+                </div>
+        {% endfor %}
+        <div class="pager d-flex justify-content-center align-items-center pt-4">{{ pagerfanta(pager) }}</div>
+        </div>
+    </section>
 
 
 </div>
