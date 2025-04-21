@@ -44,36 +44,20 @@
                 <h1 class="text-start fw-bold text-uppercase">Articles</h1> 
                 </a>
             </div>
-
         </div>
 
 
         <div class="row">
                 <div class="col-auto ">
-
                     <a href="{{ path('app_article') }}">
                         <p class="btn btn-outline-dark py-1 mr-1">All</p>
                     </a>
-
                     {% for tag in tags|sort %}
                     {% set route = app.request.attributes.get('_route_params') %}
-
-                    <a href={{ path('article_tag', {'slugtag' : tag.id} ) }}>
-                        {% if tag.id == route.slugtag %}
-                            <p class="btn btn-dark py-1 mr-1">
-                            {{ tag.title }}
-                            </p>
-                        {% else %}
-                            <p class="btn btn-outline-dark py-1">
-                            {{ tag.title }}
-                            </p>
-                        {% endif %}
-                    </a> 
+                    {% include '_components/_tag_filter.html.twig'  %}
                     {% endfor %}
                 </div>
-
         </div>
-
 </section>
 
 <section>
