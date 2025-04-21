@@ -1,6 +1,3 @@
-// Only for close the search box
-// import StimulusBridge from '@symfony/stimulus-bridge';
-
 import { Controller } from '@hotwired/stimulus';
 import { useClickOutside } from 'stimulus-use';
 

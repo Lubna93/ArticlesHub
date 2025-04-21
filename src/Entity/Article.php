@@ -75,7 +75,7 @@ class Article
     #[ApiFilter(SearchFilter::class, strategy: 'partial')]
     #[ORM\Column(length: 255)]
     #[Groups(['article:read', 'article:write', 'user:read', 'user:write'])]
-    private ?string $titre = null;
+    private ?string $title = null;
 
     #[ORM\Column(length: 500, nullable: true)]
     #[Groups(['article:read', 'article:write', 'user:read', 'user:write'])]
@@ -113,14 +113,14 @@ class Article
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitle(string $title): static
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
@@ -229,6 +229,6 @@ class Article
     }
     public function __toString(): string
     {
-      return $this->titre;   
+      return $this->title;   
     }
 }

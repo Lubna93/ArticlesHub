@@ -18,7 +18,7 @@ class Tag
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titret = null;
+    private ?string $title = null;
 
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'Tag')]
     private Collection $articles;
@@ -33,14 +33,14 @@ class Tag
         return $this->id;
     }
 
-    public function getTitret(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titret;
+        return $this->title;
     }
 
-    public function setTitret(string $titret): static
+    public function setTitle(string $title): static
     {
-        $this->titret = $titret;
+        $this->title = $title;
 
         return $this;
     }
@@ -74,7 +74,7 @@ class Tag
 
     public function __toString(): string
     {
-      return $this->titret;   
+      return $this->title;   
     }
 
 }

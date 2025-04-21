@@ -52,7 +52,7 @@ class ArticleCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('titre'),
+            TextField::new('title'),
             TextEditorField::new('body'),
             BooleanField::new('published', 'Publié?'),
             DateTimeField::new('createdat', 'Créé à')->hideOnForm(),
@@ -70,7 +70,7 @@ class ArticleCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('titre')
+            ->add('title')
             ->add('published')
             ->add('createdat')
             ;

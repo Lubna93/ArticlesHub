@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{article.titre}} | Corpus Humanum{% endblock %}
+{% block title %}{{article.title}} | Corpus Humanum{% endblock %}
 
 {% block body %}
 <style>
@@ -18,7 +18,7 @@
 	<section>
 		<div class="text-center">
 			<h1>
-				<strong>{{article.titre}}</strong>
+				<strong>{{article.title}}</strong>
 			</h1>
 		</div>
 		<hr>
@@ -27,7 +27,7 @@
 	<section class="contentV">
 		<div class="text-center">
 			{% for tag in article.Tag %}
-				<p class="btn btn-light btn-sm">{{tag.titret}}</p>
+				<p class="btn btn-light btn-sm">{{tag.title}}</p>
 			{% endfor %}
 		</div>
 		{% if article.body != null %}

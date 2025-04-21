@@ -23,7 +23,6 @@
 <div class="row d-flex justify-content-center">
     <div class="col-md-6">
 
-
         <form
         class="search input-group pt-4"
         {{ stimulus_controller('search-preview', {
@@ -39,7 +38,7 @@
                 type="search"
                 name="article"
                 class="form-control input-group-prepend"
-                placeholder="Rechercher..."
+                placeholder="How you feel right now?"
                 aria-label="Search"
                 value="{{ app.request.query.get('article')}}"
                 data-action="search-preview#onSearchInput"

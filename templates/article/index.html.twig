@@ -57,7 +57,7 @@
 
                     <a  href={{ path('article_tag', {'slugtag' : tag.id} ) }}>
                             <p class="btn btn-outline-dark py-1 mr-1">
-                            {{ tag.titret }}
+                            {{ tag.title }}
                             </p>
                     </a> 
                     {% endfor %}
@@ -79,10 +79,10 @@
                             <img class="img2" src="" alt="">
                         {% endif %}
                     </div>
-                    <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.titre|length > 30 ? article.titre|slice(0, 30) ~ '…' : article.titre}}</p>
+                    <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.title|length > 30 ? article.title|slice(0, 30) ~ '…' : article.title}}</p>
                     <div class="px-4">
                         {% for tag in article.Tag|slice(0, 2) %}
-                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.titret }}</p>
+                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.title }}</p>
                         {% endfor %}
                         {% if article.Tag|length > 2 %}
                             <p class="btn btn-outline-dark btn-sm py-0 mb-1">...</p>

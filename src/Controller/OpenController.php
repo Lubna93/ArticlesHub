@@ -16,9 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 
-
-
-class OuvrirController extends AbstractController
+class OpenController extends AbstractController
 {
     #[Route('/articles', name: 'app_article')]
     public function index(
@@ -33,7 +31,6 @@ class OuvrirController extends AbstractController
         $queryBuilder = $articleRepository->findByNewestQueryBuilder(
             $request->query->get('article')
         );
-
 
         $pagerfanta = new Pagerfanta(new QueryAdapter($queryBuilder));
         $pagerfanta->setMaxPerPage(12);
@@ -89,19 +86,26 @@ class OuvrirController extends AbstractController
         
                 if ($tag) {
                     $queryBuilder
-                        ->andWhere(':tag MEMBER OF article.Tag') // Use the MEMBER OF operator
+                        ->andWhere(':tag MEMBER OF article.Tag')
                         ->setParameter('tag', $tag);
                 }
         
             $pagerfanta = new Pagerfanta(new QueryAdapter($queryBuilder));
             $pagerfanta->setMaxPerPage(12);
             $pagerfanta->setCurrentPage($request->query->get('page', 1));
+
+            if ($request->query->get('preview')) {
+                return $this->render('article/_searchPreviewTag.html.twig', [
+                    'pager' => $pagerfanta,
+                ]);
+            }
+
             $tags = $tagRepository->findAll();
 
             return $this->render('article/tag.html.twig', [
                 'tags' => $tags,
                 'tag' => $tag,
-                'pager' => $pagerfanta, // Pass the Pagerfanta instance to the template
+                'pager' => $pagerfanta,
             ]);
         }
 
