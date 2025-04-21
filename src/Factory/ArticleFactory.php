@@ -47,7 +47,7 @@ final class ArticleFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'titre' => self::faker()->text(50),
+            'title' => self::faker()->text(50),
             'body' => self::faker()->text(),
             'published' => self::faker()->boolean(),
             'createdat' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),

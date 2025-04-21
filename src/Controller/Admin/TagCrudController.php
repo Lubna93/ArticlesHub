@@ -43,14 +43,14 @@ class TagCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('titret', 'Titre')->setRequired(true),
+            TextField::new('title', 'Title')->setRequired(true),
         ];
     }
 
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('titret')
+            ->add('title')
             ;
     }
 

@@ -2,6 +2,10 @@
 
 {% block title %}Article{% endblock %}
 
+{% set breadcrumb = {
+	"Articles": path('app_article')
+} %}
+
 {% block body %}
 <style>
 
@@ -37,74 +41,60 @@
 
 </style>
 <div class="container pt-4">
-<section>
-        <div class="py-4">
-            <div>
-                <a href={{ path('app_article') }}>
-                <h1 class="text-start fw-bold text-uppercase">Articles</h1> 
-                </a>
-            </div>
+	{% include '_components/_breadcrumb.html.twig'  %}
 
-        </div>
-
-
-        <div class="row">
-                <div class="col-auto ">
-
-                    <a href="{{ path('app_article') }}">
-                        <p class="btn btn-outline-dark py-1 mr-1">All</p>
+    <section>
+            <div class="py-4">
+                <div>
+                    <a href={{ path('app_article') }}>
+                    <h1 class="text-start fw-bold text-uppercase">Articles</h1> 
                     </a>
-
-                    {% for tag in tags|sort %}
-                    {% set route = app.request.attributes.get('_route_params') %}
-
-                    <a href={{ path('article_tag', {'slugtag' : tag.id} ) }}>
-                        {% if tag.id == route.slugtag %}
-                            <p class="btn btn-dark py-1 mr-1">
-                            {{ tag.titret }}
-                            </p>
-                        {% else %}
-                            <p class="btn btn-outline-dark py-1">
-                            {{ tag.titret }}
-                            </p>
-                        {% endif %}
-                    </a> 
-                    {% endfor %}
                 </div>
-
-        </div>
-
-</section>
-
-<section>
-    <div class="row">
-    {% for article in pager %}  
-            <div class="col d-flex justify-content-center ">
-            <a href={{ path('article_show', {'id' : article.id}) }}> 
-                <div class="cart text-start">
-                    <div class="img1">
-                        {% if article.image == true %}
-                            <img class="img2" src="{{ asset(article.ImageUrl)|imagine_filter('squared_thumbnail_small') }}" alt="image">
-                        {% else %}
-                            <img class="img2" src="" alt="">
-                        {% endif %}
-                    </div>
-                    <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.titre|length > 30 ? article.titre|slice(0, 30) ~ '…' : article.titre}}</p>
-                    <div class="px-4">
-                        {% for tag in article.Tag|slice(0, 2) %}
-                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.titret }}</p>
-                        {% endfor %}
-                        {% if article.Tag|length > 2 %}
-                            <p class="btn btn-outline-dark btn-sm py-0 mb-1">...</p>
-                        {% endif %}
-                    </div>
-                </div>  
-            </a> 
             </div>
-    {% endfor %}
-    <div class="pager d-flex justify-content-center align-items-center pt-4">{{ pagerfanta(pager) }}</div>
-    </div>
-</section>
+
+
+            <div class="row">
+                    <div class="col-auto ">
+                        <a href="{{ path('app_article') }}">
+                            <p class="btn btn-outline-dark py-1 mr-1">All</p>
+                        </a>
+                        {% for tag in tags|sort %}
+                        {% set route = app.request.attributes.get('_route_params') %}
+                        {% include '_components/_tag_filter.html.twig'  %}
+                        {% endfor %}
+                    </div>
+            </div>
+    </section>
+
+    <section>
+        <div class="row">
+            {% for article in pager %}  
+                    <div class="col d-flex justify-content-center ">
+                    <a href={{ path('article_show', {'id' : article.id}) }}> 
+                        <div class="cart text-start">
+                            <div class="img1">
+                                {% if article.image == true %}
+                                    <img class="img2" src="{{ asset(article.ImageUrl)|imagine_filter('squared_thumbnail_small') }}" alt="image">
+                                {% else %}
+                                    <img class="img2" src="" alt="">
+                                {% endif %}
+                            </div>
+                            <p class="fw-bold text-dark mt-3 mb-2 px-4">{{article.title|length > 30 ? article.title|slice(0, 30) ~ '…' : article.title}}</p>
+                            <div class="px-4">
+                                {% for tag in article.Tag|slice(0, 2) %}
+                                    <p class="btn btn-outline-dark btn-sm py-0 mb-1">{{ tag.title }}</p>
+                                {% endfor %}
+                                {% if article.Tag|length > 2 %}
+                                    <p class="btn btn-outline-dark btn-sm py-0 mb-1">...</p>
+                                {% endif %}
+                            </div>
+                        </div>  
+                    </a> 
+                    </div>
+            {% endfor %}
+            <div class="pager d-flex justify-content-center align-items-center pt-4">{{ pagerfanta(pager) }}</div>
+        </div>
+    </section>
 
 
 </div>

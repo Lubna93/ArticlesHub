@@ -1,0 +1,11 @@
+<a href={{ path('article_tag', {'slugtag' : tag.id} ) }}>
+    {% if tag.id == route.slugtag %}
+        <p class="btn btn-dark py-1 mr-1">
+        {{ tag.title }}
+        </p>
+    {% else %}
+        <p class="btn btn-outline-dark py-1">
+        {{ tag.title }}
+        </p>
+    {% endif %}
+</a> 

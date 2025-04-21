@@ -1,0 +1,27 @@
+{% if breadcrumb is defined %}
+    {% set breadcrumbItems = breadcrumb|default({}) %}
+
+    <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-separatorless mb-4 fs-7 fw-semibold align-items-center">
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_home') }}" class="text-dark d-flex align-items-center gap-1">
+                    <i class="fas fa-home text-muted p-2"></i> Home
+                </a>
+            </li>
+
+            {% for label, link in breadcrumbItems %}
+                <li class="breadcrumb-item">
+                    {% if link %}
+                        <a href="{{ link }}" class="text-dark fw-semibold">
+                            {{ label }}
+                        </a>
+                    {% else %}
+                        <span class="text-dark fw-semibold">
+                            {{ label }}
+                        </span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+{% endif %}

@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{article.titre}} | Corpus Humanum{% endblock %}
+{% block title %}{{article.title}} | Article Hub{% endblock %}
+
+{% set breadcrumb = {
+	"Articles": path('app_article')
+} %}
+{% set breadcrumb = breadcrumb|merge({(article.title|capitalize): null}) %}
 
 {% block body %}
 <style>
@@ -14,11 +19,12 @@
 
 <div class="container mt-5">
 
-
+	{% include '_components/_breadcrumb.html.twig'  %}
+	
 	<section>
 		<div class="text-center">
 			<h1>
-				<strong>{{article.titre}}</strong>
+				<strong>{{article.title|capitalize}}</strong>
 			</h1>
 		</div>
 		<hr>
@@ -27,7 +33,7 @@
 	<section class="contentV">
 		<div class="text-center">
 			{% for tag in article.Tag %}
-				<p class="btn btn-light btn-sm">{{tag.titret}}</p>
+				<p class="btn btn-light btn-sm">{{tag.title}}</p>
 			{% endfor %}
 		</div>
 		{% if article.body != null %}
@@ -39,7 +45,7 @@
 		{% if article.Image != null %}
 			<img class="imgR img-fluid" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_grand')}}" alt="imageActualites">
 		{% endif %}
-			<p class="dateV">Publié le :{{article.createdat | date("d/m/Y")}}</p>
+			<p class="dateV">Posted on {{article.createdat | date('F j, Y')}}</p>
 		</div>
 	</section>
 

@@ -17,11 +17,10 @@ composer install
 
 ### Database Setup
 
-First, make sure to start your own database server and update the `DATABASE_URL` environment variable in `.env` or `.env.local`
+First, make sure to start your own database server and update the `DATABASE_URL` environment variable in your `.env.local` file.
 
 ```
 php bin/console doctrine:database:create
-php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 ```
 
