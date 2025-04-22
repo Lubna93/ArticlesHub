@@ -15,6 +15,8 @@ use App\Repository\ArticleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Knp\Snappy\Pdf;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class OpenController extends AbstractController
 {
@@ -66,6 +68,44 @@ class OpenController extends AbstractController
             'tags' => $tags
         ]);
     }
+
+
+    #[Route('/export/pdf/article/{id}', name: 'article_export_pdf')]
+    public function exportArticlePdf(
+        int $id,
+        ArticleRepository $articleRepository,
+        Article $article,
+        Pdf $knpSnappyPdf
+        ): PdfResponse
+    {
+
+        $html = $this->renderView('article/pdf.html.twig', [
+            'article' => $article,
+        ]);
+
+        return new PdfResponse(
+            $knpSnappyPdf->getOutputFromHtml($html, [
+                'lowquality' => false,
+                'images' => true,
+                'disable-smart-shrinking' => true,
+                'dpi' => 300,
+                'margin-top' => 10,
+                'margin-bottom' => 10,
+                'orientation' => 'Portrait',
+                'page-size' => 'A4',
+                'header-spacing' => 0,
+                'footer-spacing' => 0,
+                'footer-font-size' => 8, 
+                'footer-left' => '[page] / [toPage]',
+                'footer-right' => 'Exprted on [date]'
+            ]),
+            'article_' . $article->getTitle() . '.pdf',
+            'application/pdf',
+            'inline'
+        );
+    }
+
+
 
     #[Route('/article-tag/{slugtag}', name: 'article_tag')]
         public function tag(

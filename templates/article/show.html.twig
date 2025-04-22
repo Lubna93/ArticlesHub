@@ -18,9 +18,17 @@
 </style>
 
 <div class="container mt-5">
-
-	{% include '_components/_breadcrumb.html.twig'  %}
-	
+	<div class="d-flex justify-content-between">
+		{% include '_components/_breadcrumb.html.twig'  %}
+		<div>	
+			<a href="{{path('article_export_pdf',{'id':article.id}) }}" target="_blank">
+				<button type="button" class="btn btn-success btn-sm">
+					<i class="fa-solid fa-file-arrow-down"></i>
+					Export as pdf
+				</button>
+			</a>
+		</div>
+	</div>	
 	<section>
 		<div class="text-center">
 			<h1>
@@ -43,14 +51,10 @@
 
 		<div class="text-center">
 		{% if article.Image != null %}
-			<img class="imgR img-fluid" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_grand')}}" alt="imageActualites">
+			<img class="imgR img-fluid" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_grand')}}" alt="Article Image">
 		{% endif %}
 			<p class="dateV">Posted on {{article.createdat | date('F j, Y')}}</p>
 		</div>
 	</section>
-
-
 </div>
-
-<br><br>
 {% endblock %}

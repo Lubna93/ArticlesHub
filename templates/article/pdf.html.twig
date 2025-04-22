@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ absolute_url(asset('styles/pdf.css')) }}">
+    <title>{{ article.title|capitalize }}</title>
+</head>
+<body>
+
+<h1>{{ article.title|capitalize }}</h1>
+
+<div class="tags">
+    {% for tag in article.Tag %}
+        <span class="tag">{{ tag.title }}</span>
+    {% endfor %}
+</div>
+
+{% if article.body %}
+    <div class="article-body">
+        {{ article.body|markdown_to_html }}
+    </div>
+{% endif %}
+
+{% if article.Image %}
+    <img class="imgR" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_small')}}" alt="Article Image">
+{% endif %}
+
+<p class="dateV">Posted on {{ article.createdat|date('F j, Y') }}</p>
+
+</body>
+</html>
