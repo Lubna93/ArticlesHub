@@ -1,0 +1,42 @@
+* {
+    font-family: 'Calibri, sans-serif', sans-serif;  
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1rem;
+}
+
+.tags {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 0.3rem 0.6rem;
+    margin: 0.2rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.article-body {
+    margin: 1rem;
+}
+
+.imgR {
+    display: block;
+    margin: 2rem auto;
+    max-width: 100%;
+    max-height: 20rem;
+    border-radius: 0.5rem;
+}
+
+.dateV {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    color: #777;
+}
