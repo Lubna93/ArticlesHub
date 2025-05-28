@@ -7,7 +7,7 @@
 
         <div>
             {% if not is_granted('ROLE_USER') %}
-                <a class="nav-link" href="/loginform"> 
+                <a class="nav-link" href="{{ path('app_login') }}"> 
                     <i class="fa-regular fa-circle-user fa-xl"></i>
                 </a>
             {% endif %}

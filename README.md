@@ -1,7 +1,8 @@
-# Article Hub: A simple repository contains some main steps to create a dynamic article website, contains the following:
+# Article Hub:
+A simple repository contains some main steps to create a dynamic article website, contains the following:
 - AssetMapper and Stimulus.
 - Admin Dasboard using EasyAdmin
-- Some essential features like: Tags filter with search bar autocomplete, pagintation, resize the images, 
+- Some essential features like: Tags filter with search bar autocomplete, pagintation, resize the images. 
 
 ## Setup
 To get your code working, follow these steps:
@@ -22,6 +23,7 @@ First, make sure to start your own database server and update the `DATABASE_URL`
 ```
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
 ```
 
 **Start the Symfony web server**
