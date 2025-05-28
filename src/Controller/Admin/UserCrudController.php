@@ -23,11 +23,17 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $roles = ['ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_USER'];
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('username')->setRequired(true),
             TextField::new('email')->setRequired(true),
             TextField::new('password', 'Hashed Password')->setRequired(true)->onlyOnForms(),
+            ChoiceField::new('roles')
+                ->setChoices(array_combine($roles, $roles))
+                ->allowMultipleChoices()
+                ->renderExpanded()
+                ->renderAsBadges(),
             AssociationField::new('articles' , 'Nombre de articles')->setFormTypeOptions(['by_reference' => false,])->hideOnForm(),
         ];
     }
