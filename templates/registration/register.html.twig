@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body mx-3">
+                    <h1 class="mb-4 text-center h2 m-4">Create an Account</h1>
+
+                    {{ form_start(registrationForm) }}
+                        <div class="form-group mb-3">
+                            {{ form_label(registrationForm.username) }}
+                            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.username) }}
+                        </div>
+
+                        <div class="form-group mb-3">
+                            {{ form_label(registrationForm.email) }}
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+
+                        <div class="form-group mb-3">
+                            {{ form_label(registrationForm.plainPassword.first) }}
+                            {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.plainPassword.first) }}
+                        </div>
+
+                        <div class="form-group mb-3">
+                            {{ form_label(registrationForm.plainPassword.second) }}
+                            {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.plainPassword.second) }}
+                        </div>
+
+                        <div class="form-check mb-4">
+                            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                            {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                            {{ form_errors(registrationForm.agreeTerms) }}
+                        </div>
+
+                        <div class="text-center my-4">
+                            <button type="submit" class="btn btn-dark btn-block px-4">Register</button>
+                        </div>
+                    {{ form_end(registrationForm) }}
+
+                    <div class="text-center m-4">
+                        Already have an account?<a href="{{ path('app_login') }}"> Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
