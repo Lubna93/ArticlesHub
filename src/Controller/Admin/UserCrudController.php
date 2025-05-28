@@ -27,10 +27,8 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('username')->setRequired(true),
             TextField::new('email')->setRequired(true),
-            TextField::new('password')->setRequired(true),
+            TextField::new('password', 'Hashed Password')->setRequired(true)->onlyOnForms(),
             AssociationField::new('articles' , 'Nombre de articles')->setFormTypeOptions(['by_reference' => false,])->hideOnForm(),
-            // ArrayField::new('articles')->hideOnForm(),
-
         ];
     }
 }
