@@ -28,6 +28,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use function Symfony\Component\String\u;
 use ApiPlatform\Metadata\Link;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ApiResource(
@@ -67,6 +68,8 @@ use ApiPlatform\Metadata\Link;
 ])]
 class Article
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -91,9 +94,6 @@ class Article
     #[Groups(['article:read', 'article:write', 'user:read', 'user:write'])]
     private ?bool $published = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $createdat = null;
-
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'articles')]
     private Collection $Tag;
 
@@ -105,7 +105,6 @@ class Article
     public function __construct()
     {
         $this->Tag = new ArrayCollection();
-        $this->setcreatedat(new \DateTime());
     }
 
     public function getId(): ?int
@@ -172,24 +171,9 @@ class Article
         return $this;
     }
 
-    public function getCreatedat(): ?\DateTimeInterface
+    public function getCreatedAtAgo(): string
     {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(?\DateTimeInterface $createdat): static
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    /**
-     * A human-readable representation of when this treasure was plundered.
-     */
-    public function getCreatedatAgo(): string
-    {
-        return Carbon::instance($this->createdat)->diffForHumans();
+        return Carbon::instance($this->createdAt)->diffForHumans();
     }
 
     /**

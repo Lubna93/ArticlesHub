@@ -25,7 +25,7 @@
     <img class="imgR" src="{{article.ImageUrl|imagine_filter('squared_thumbnail_small')}}" alt="Article Image">
 {% endif %}
 
-<p class="dateV">Posted on {{ article.createdat|date('F j, Y') }}</p>
+<p class="dateV">Posted on {{ article.createdAt|date('F j, Y') }}</p>
 
 </body>
 </html>

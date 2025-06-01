@@ -121,7 +121,7 @@ class OpenController extends AbstractController
             $tag  = $tagRepository->findOneBy(['id' => $slugtag]);
         
             $queryBuilder = $articleRepository->createQueryBuilder('article')
-                ->orderBy('article.createdat', 'DESC')
+                ->orderBy('article.createdAt', 'DESC')
                 ->where('article.published = TRUE'); 
         
                 if ($tag) {
