@@ -21,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 class TagCrudController extends AbstractCrudController
 {
@@ -44,6 +45,8 @@ class TagCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Title')->setRequired(true),
+            DateTimeField::new('createdAt', 'Created at')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Updated at')->hideOnForm(),
         ];
     }
 

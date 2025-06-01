@@ -55,10 +55,11 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new('title'),
             TextEditorField::new('body'),
             BooleanField::new('published', 'Publié?'),
-            DateTimeField::new('createdAt', 'Créé à')->hideOnForm(),
             AssociationField::new('Tag')->hideOnIndex(),
             ArrayField::new('Tag', 'Tags')->hideOnForm(),
             AssociationField::new('owner'),
+            DateTimeField::new('createdAt', 'Created at')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Updated at')->hideOnForm(),
             ImageField::new('Image', 'Image')
                 ->setUploadDir('public/uploads/article')
                 ->setBasePath('uploads/article')

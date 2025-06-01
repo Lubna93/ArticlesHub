@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -35,6 +36,8 @@ class UserCrudController extends AbstractCrudController
                 ->renderExpanded()
                 ->renderAsBadges(),
             AssociationField::new('articles' , 'Nombre de articles')->setFormTypeOptions(['by_reference' => false,])->hideOnForm(),
+            DateTimeField::new('createdAt', 'Created at')->hideOnForm(),
+            DateTimeField::new('updatedAt', 'Updated at')->hideOnForm(),
         ];
     }
 }
