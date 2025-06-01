@@ -55,7 +55,7 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new('title'),
             TextEditorField::new('body'),
             BooleanField::new('published', 'Publié?'),
-            DateTimeField::new('createdat', 'Créé à')->hideOnForm(),
+            DateTimeField::new('createdAt', 'Créé à')->hideOnForm(),
             AssociationField::new('Tag')->hideOnIndex(),
             ArrayField::new('Tag', 'Tags')->hideOnForm(),
             AssociationField::new('owner'),
@@ -72,7 +72,7 @@ class ArticleCrudController extends AbstractCrudController
         return $filters
             ->add('title')
             ->add('published')
-            ->add('createdat')
+            ->add('createdAt')
             ;
     }
 

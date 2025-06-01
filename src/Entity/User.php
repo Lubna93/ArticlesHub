@@ -19,6 +19,7 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Link;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -43,6 +44,8 @@ use ApiPlatform\Metadata\Link;
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use TimestampableEntity;
+     
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

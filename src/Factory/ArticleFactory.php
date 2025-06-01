@@ -50,7 +50,7 @@ final class ArticleFactory extends ModelFactory
             'title' => self::faker()->text(50),
             'body' => self::faker()->text(),
             'published' => self::faker()->boolean(),
-            'createdat' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
+            'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
         ];
     }
 
