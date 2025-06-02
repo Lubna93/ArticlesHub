@@ -15,17 +15,36 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class)
+            ->add('username', TextType::class, [
+                'label' => 'Username',
+                'attr' => [
+                    'placeholder' => 'Enter your username',
+                    'class' => 'form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Username cannot be blank',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Username must be at least {{ limit }} characters long',
+                        'max' => 20,
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9_.-]+$/',
+                        'message' => 'Only letters, numbers, dots, underscores and dashes are allowed.',
+                    ]),
+                ],
+            ])
             ->add('email', EmailType::class)
             ->add('plainPassword', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'invalid_message' => 'The password fields must match.',
@@ -41,7 +60,6 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
