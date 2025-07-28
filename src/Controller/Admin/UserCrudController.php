@@ -14,6 +14,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -40,4 +43,15 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt', 'Updated at')->hideOnForm(),
         ];
     }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('username')
+            ->add('email')
+            ->add('createdAt')
+            ->add('articles')
+            ;
+    }
+
 }
