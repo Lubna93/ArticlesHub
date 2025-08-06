@@ -20,9 +20,16 @@ composer install
 
 First, make sure to start your own database server and update the `DATABASE_URL` environment variable in your `.env.local` file.
 
+Or you can connect a database inside Docker. As the code comes with a `compose.yaml` file and it is recommended to use Docker to boot a database container. You will still have PHP installed locally. So, make sure you have [Docker installed](https://docs.docker.com/get-docker/)
+To start the container, run:
 ```
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
+docker-compose up -d
+```
+Next, build the database, execute the migrations and load the fixtures with:
+
+```
+php bin/console doctrine:database:create --if-not-exists
+symfony console doctrine:schema:update --force
 php bin/console doctrine:fixtures:load
 ```
 
