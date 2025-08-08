@@ -2,11 +2,6 @@
 
 {% block title %}Contact Us{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/contact.js') }}"></script>
-{% endblock %}
-
 {% block body %}
     
 <div class="container my-5">
@@ -24,7 +19,7 @@
             <div class="card shadow-sm">
                 <div class="card-body mx-3">
                     <h1 class="mb-4 text-center h2 m-4">Contact Us</h1>
-                    {{ form_start(contact_form) }}
+                    {{ form_start(contact_form, { attr: { 'data-turbo': 'false' } }) }}
 
                         {{ form_row(contact_form.name) }}
                         {{ form_row(contact_form.email) }}
