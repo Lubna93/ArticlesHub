@@ -14,12 +14,12 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ path(app.current_route, app.request.query.all|merge({'_locale': 'en'})) }}">
+                        <a class="dropdown-item"
+                        href="{{ path(app.current_route ?? 'homepage', app.request.query.all|merge({'_locale': 'en'})) }}">
                             🇬🇧 English
                         </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ path(app.current_route, app.request.query.all|merge({'_locale': 'fr'})) }}">
+                        <a class="dropdown-item"
+                        href="{{ path(app.current_route ?? 'homepage', app.request.query.all|merge({'_locale': 'fr'})) }}">
                             🇫🇷 Français
                         </a>
                     </li>
